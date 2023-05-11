@@ -1,7 +1,8 @@
 import React from 'react'
+import './Appointments.css'
 
 export const Appointments = () => {
   return (
-    <div>Appointments</div>
+    <div className='appointmentsBody'>Appointments</div>
   )
 }
