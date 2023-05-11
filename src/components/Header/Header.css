@@ -1,0 +1,30 @@
+.headerBody{
+    height: 15vh;
+    width: 100vw;
+
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: row;
+
+    background-color: black;
+    border-bottom: 2px solid #5e7ce4;
+}
+
+.headerButton{
+    height: 8vh;
+    width: 10vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+}
+
+.headerButton:hover{
+
+    background: radial-gradient(circle, rgba(80,195,85,1) 55%, rgba(83,178,187,1) 100%);
+
+}

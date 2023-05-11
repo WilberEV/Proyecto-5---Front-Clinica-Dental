@@ -1,0 +1,11 @@
+.footerBody{
+    height: 10vh;
+    width: 100vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: black;
+    border-top: 2px solid #5e7ce4;
+}
