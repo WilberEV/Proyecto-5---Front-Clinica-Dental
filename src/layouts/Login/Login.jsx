@@ -31,7 +31,7 @@ export const Login = () => {
     }));
   };
 
-  const logMeFunction = () => {
+  const logMeIn = () => {
 
     logInAccount(credentials)
       .then((resultado) => {
@@ -57,10 +57,11 @@ export const Login = () => {
   };
 
   useEffect(()=>{
-
-      console.log(userRdxData,'////////////')
-  
+    if(userRdxData.credentials.token){
+      navigate("/")
+    };
   },[]);
+
 
   return (
     <div className='loginBody'>
@@ -85,8 +86,8 @@ export const Login = () => {
             handler={inputHandlerFunction}
           />
 
-          <div className="loginButton" onClick={() => logMeFunction()}>
-            Login!
+          <div className="loginButton" onClick={() => logMeIn()}>
+            Login
           </div>
         </div>
       )}

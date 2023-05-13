@@ -2,8 +2,7 @@ import axios from 'axios';
 
 export const logInAccount = async (credentials) => {
 
-    const res = await axios.post('https://dentistclinicbackend-production.up.railway.app/user/login', credentials)
-
+    const res = await axios.post('https://proyecto-4-clinica-dental-production.up.railway.app/user/login', credentials)
     return res
 }
 
@@ -21,7 +20,7 @@ export const bringUserProfile = async () => {
         }
       };
 
-    return await axios.get(`https://fsdemian-clinica-dental-production-a578.up.railway.app/${id}`, config);
+    return await axios.get(`https://proyecto-4-clinica-dental-production.up.railway.app/user/${id}`, config);
 }
 
 
@@ -35,5 +34,26 @@ export const bringDentists = async () => {
     }
   };
 
-  return await axios.get(`https://dentistclinicbackend-production.up.railway.app/user/dentist`, config);
+  return await axios.get(`https://proyecto-4-clinica-dental-production.up.railway.app/user/dentist`, config);
+}
+
+export const userSignUp = async () =>{
+
+  let body = {
+    name: "Clark",
+    lastname: "Kent",
+    dni: "9543156S",
+    email: "superman@email.com",
+    phone: "796245",
+    password: "Abril.2023",
+    role: "USER"
+  }
+
+  let token = {
+    id: '123',
+    role: 'USER'
+  }
+
+  return await axios.post(`https://proyecto-4-clinica-dental-production.up.railway.app/user/`, body);
+
 }

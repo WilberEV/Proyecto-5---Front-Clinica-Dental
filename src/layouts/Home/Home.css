@@ -1,10 +1,94 @@
 .homeBody{
-    height: 73vh;
     width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background-color: #E5E5E5;
+}
+
+.homeTitle {
+    height: 25vh;
+    width: 40vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid #5e7ce4;
+    border-radius: 20%;
+}
+
+.homeTitle img{
+    height: 15vh;
+}
+
+.homeSubtitle{
+    height: 20vh;
+    width: 30vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    border-bottom: 2px solid #5e7ce4;
+    border-radius: 75%;
+}
+
+.homeSubtitle img{
+    height: 7vh;
+
+}
+
+.homeSplit{
+    height: 60vh;
+    width: 100vw;
+
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.homeSplit img{
+    width: 100vw;
+
+}
+
+
+.homeBlock1{
+    height: 90vh;
+    width: 90vw;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.homeBlock1 img{
+    height: 70vh;
+
+}
+
+.verticalSplit{
+    height: 60vh;
+    width: 0.2vw;
+
+    background-color: #5e7ce4;
+
+    border-radius: 75%;
+}
+
+.homeBlock1 p{
+    height: 50vh;
+    width: 30vw;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    background-color: #E5E5E5;
+    font-size: 1.2em;
 }

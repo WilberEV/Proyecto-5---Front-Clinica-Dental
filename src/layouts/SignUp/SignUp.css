@@ -1,5 +1,5 @@
 .signUpBody{
-    height: 73vh;
+    height: 75vh;
     width: 100vw;
 
     display: flex;
@@ -7,4 +7,23 @@
     align-items: center;
 
     background-color: #E5E5E5;
+}
+
+.signUpButton {
+
+    width: 6em;
+    height: 3em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: darkcyan;
+
+    border-radius: 0.5em;
+    transition: 0.3s;
+    color: white;
+    font-weight: bold;
+
+    cursor: pointer;
 }
