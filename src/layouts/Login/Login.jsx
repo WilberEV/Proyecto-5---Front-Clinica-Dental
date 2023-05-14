@@ -69,25 +69,28 @@ export const Login = () => {
 {message != "" ? (
         <div>{message}</div>
       ) : (
-        <div>
-          <InputText
-            type={"email"}
-            className={"basicInput"}
-            placeholder={""}
-            name={"email"}
-            handler={inputHandlerFunction}
-          />
+        <div className="loginContainer">
+          <div className="loginContainer2">
+            <div>Email:</div>
+            <InputText
+              type={"email"}
+              className={"basicInput"}
+              placeholder={""}
+              name={"email"}
+              handler={inputHandlerFunction}
+            />
+            <div>Password:</div>
+            <InputText
+              type={"password"}
+              className={"basicInput"}
+              placeholder={""}
+              name={"password"}
+              handler={inputHandlerFunction}
+            />
 
-          <InputText
-            type={"password"}
-            className={"basicInput"}
-            placeholder={""}
-            name={"password"}
-            handler={inputHandlerFunction}
-          />
-
-          <div className="loginButton" onClick={() => logMeIn()}>
-            Login
+            <div className="loginButton" onClick={() => logMeIn()}>
+              Login
+            </div>
           </div>
         </div>
       )}

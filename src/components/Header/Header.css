@@ -45,9 +45,10 @@
     cursor: pointer;
     color: white;
 
+    border-radius: 1em;
 }
 
 .headerButton:hover{
 
-    background: radial-gradient(circle, rgba(80,195,85,1) 55%, rgba(83,178,187,1) 100%);
+    background-color: #4561c3;
 }
