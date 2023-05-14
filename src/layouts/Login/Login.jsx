@@ -64,9 +64,9 @@ export const Login = () => {
 
 
   return (
-    <div className='loginBody'>
+  <div className='loginBody'>
 
-{message != "" ? (
+    {message != "" ? (
         <div>{message}</div>
       ) : (
         <div className="loginContainer">
@@ -94,7 +94,6 @@ export const Login = () => {
           </div>
         </div>
       )}
-
-    </div>
+  </div>
   )
 }
