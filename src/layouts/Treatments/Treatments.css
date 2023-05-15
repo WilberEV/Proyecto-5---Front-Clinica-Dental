@@ -1,5 +1,5 @@
 .treatmentsBody{
-    height: 75vh;
+    height: 90vh;
     width: 100vw;
 
     display: flex;
@@ -11,7 +11,7 @@
 
 
 .treatmentsGrid{
-    height: 70vh;
+    height: 80vh;
     width: 85vw;
     display: grid;
     grid-template-columns: 33% 33% 33%;

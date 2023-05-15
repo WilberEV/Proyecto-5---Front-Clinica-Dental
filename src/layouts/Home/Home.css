@@ -1,4 +1,5 @@
 .homeBody{
+    height: 215vh;
     width: 100vw;
     display: flex;
     justify-content: center;

@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 export const logInAccount = async (credentials) => {
-
-    const res = await axios.post('https://proyecto-4-clinica-dental-production.up.railway.app/user/login', credentials)
+    console.log(credentials, '//////credentials/////////')
+    const res = await axios.post('http://localhost:3000/user/login', credentials)
+    console.log(res, '////////////////res//////////////')
     return res
 }
 
