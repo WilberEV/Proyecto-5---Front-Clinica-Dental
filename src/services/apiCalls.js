@@ -1,19 +1,12 @@
 import axios from 'axios';
 
 export const logInAccount = async (credentials) => {
-    console.log(credentials, '//////credentials/////////')
-    const res = await axios.post('http://localhost:3000/user/login', credentials)
-    console.log(res, '////////////////res//////////////')
-    return res
+
+  return await axios.post('http://localhost:3000/user/login', credentials)
 }
 
 
-
-export const bringUserProfile = async () => {
-
-    const id = 'DOCTOR';
-
-    let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NTIwZWJiYzRjN2NiZDExODZiNDljMyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY4Mzc5MjI5M30.CrD--k8TwIKk1MBkhwlXLlHXFZOjLmTXkDSzvGf3ar8';
+export const bringUserProfile = async (id, token) => {
 
     let config = {
         headers: { 
@@ -21,7 +14,7 @@ export const bringUserProfile = async () => {
         }
       };
 
-    return await axios.get(`https://proyecto-4-clinica-dental-production.up.railway.app/user/${id}`, config);
+    return await axios.get(`http://localhost:3000/user/${id}`, config);
 }
 
 
@@ -38,23 +31,10 @@ export const bringDentists = async () => {
   return await axios.get(`https://proyecto-4-clinica-dental-production.up.railway.app/user/dentist`, config);
 }
 
-export const userSignUp = async () =>{
+export const userSignUp = async (credentials) =>{
 
-  let body = {
-    name: "Clark",
-    lastname: "Kent",
-    dni: "9543156S",
-    email: "superman@email.com",
-    phone: "796245",
-    password: "Abril.2023",
-    role: "USER"
-  }
+  console.log(credentials, '////credentials////')
 
-  let token = {
-    id: '123',
-    role: 'USER'
-  }
-
-  return await axios.post(`https://proyecto-4-clinica-dental-production.up.railway.app/user/`, body);
+  return await axios.post('http://localhost:3000/user/', credentials);
 
 }

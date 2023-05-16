@@ -18,14 +18,14 @@ export const Profile = () => {
   
     const navigate = useNavigate();
   
-    // useEffect(() => {
-    //   if (!userRdxData.credentials.token) {
-    //     navigate("/");
-    //   }
-    // }, []);
+    useEffect(() => {
+      if (!userRdxData.credentials.token) {
+        navigate("/");
+      }
+    }, []);
   
     useEffect(() => {
-      bringUserProfile()
+      bringUserProfile(userRdxData.credentials.user.id, userRdxData.credentials.token)
         .then((results) => {
           setDatosPerfilUser(results);
         })
@@ -35,7 +35,17 @@ export const Profile = () => {
     return (
       <div className="profileBody">
         {datosPerfilUser.id !== "" ? (
-          <div>{datosPerfilUser.name}</div>
+          <div className="profileContainer">
+            <div className="profileContainer2">
+              <div>Name: {datosPerfilUser.data.name}</div>
+              <div>Lastname: {datosPerfilUser.data.lastname}</div>
+              <div>DNI: {datosPerfilUser.data.dni}</div>
+              <div>Email: {datosPerfilUser.data.email}</div>
+              <div>Phone Number: {datosPerfilUser.data.phone}</div>
+              <div>Creation Date: {datosPerfilUser.data.createdAt}</div>
+            </div>
+          </div>
+          
         ) : (
           <div>CARGANDO</div>
         )}

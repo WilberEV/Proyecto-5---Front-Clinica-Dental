@@ -37,20 +37,13 @@ export const SignUp = () => {
   const signingIn = () => {
     userSignUp(credentials)
       .then((result) => {
-        const decoded = jwt_decode(result.data.token);
 
-        const datos = {
-          token: result.data.token,
-          user: decoded,
-        };
-        //Una vez tengo el token, lo guardo con el dispatch
-        dispatch(login({ credentials: datos }));
-
-        setMessage(`Bienvenido de nuevo mr.${decoded.email}`);
+  
+        setMessage(`Welcome to Hephaestus, ${result.data.name} please proceed with the login`);
         //Nos vamos de aqui....
 
         setTimeout(() => {
-          navigate("/");
+          navigate("/login");
         }, 2750);
       })
       .catch((error) => console.log(error));
@@ -120,7 +113,7 @@ export const SignUp = () => {
           </div>
           <div className="signUpContainer3">
           <div className="signUpButton" onClick={() => signingIn()}>
-              Login
+              Sign Up
             </div>
           </div>
         </div>

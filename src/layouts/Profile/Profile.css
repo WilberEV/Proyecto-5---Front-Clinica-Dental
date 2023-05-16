@@ -8,3 +8,27 @@
 
     background-color: #E5E5E5;
 }
+
+.profileContainer{
+    height: 40vh;
+    width: 30vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background-color: #a6a6a6;
+    border-radius: 1em;
+}
+
+.profileContainer2{
+    height: 30vh;
+    width: 25vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+
+}

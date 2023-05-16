@@ -52,3 +52,10 @@
 
     background-color: #4561c3;
 }
+
+.adminButton{
+    width: 100vw;
+
+    background-color: black;
+    color: white;
+}

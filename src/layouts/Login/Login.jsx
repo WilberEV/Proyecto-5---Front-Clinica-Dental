@@ -35,9 +35,7 @@ export const Login = () => {
 
     logInAccount(credentials)
       .then((result) => {
-        console.log(result, '/////////result///////')
         const decoded = jwt_decode(result.data.token);
-        console.log(decoded, '////////decoded///////')
         const datos = {
           token: result.data.token,
           user: decoded
