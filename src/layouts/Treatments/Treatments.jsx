@@ -1,13 +1,7 @@
 import React from 'react'
 import './Treatments.css'
 import { useNavigate } from "react-router-dom";
-
-import orthodontics from '../../assets/img/orthodontics.jpg'
-import bruxism from '../../assets/img/bruxism.jpg'
-import dentures from '../../assets/img/dentures.jpg'
-import emergencies from '../../assets/img/emergencies.png'
-import prevention from '../../assets/img/prevention.jpg'
-import whitening from '../../assets/img/whitening.jpg'
+import { images } from '../../components/Images/Images';
 
 
 export const Treatments = () => {
@@ -18,30 +12,32 @@ export const Treatments = () => {
     <div className='treatmentsBody'>
       <div className='treatmentsGrid'>
         <div className='treatmentsCard' onClick={() => navigate("/appointments")}>
-          <img src={orthodontics}/>
+          <img src={images.orthodontics}/>
           <p>Orthodontics</p>
         </div>
         <div className='treatmentsCard' onClick={() => navigate("/appointments")}>
-          <img src={dentures}/>
+          <img src={images.dentures}/>
           <p>Dentures</p>
         </div>
         <div className='treatmentsCard' onClick={() => navigate("/appointments")}>
-          <img src={whitening}/>
+          <img src={images.whitening}/>
           <p>Teeth whitening</p>
         </div>
         <div className='treatmentsCard' onClick={() => navigate("/appointments")}>
-          <img src={bruxism}/>
+          <img src={images.bruxism}/>
           <p>Bruxism</p>
         </div>
         <div className='treatmentsCard' onClick={() => navigate("/appointments")}>
-          <img src={emergencies}/>
+          <img src={images.emergencies}/>
           <p>Dental emergencies</p>
         </div>
         <div className='treatmentsCard' onClick={() => navigate("/appointments")}>
-          <img src={prevention}/>
+          <img src={images.prevention}/>
           <p>Prevention and dental hygiene</p>
         </div>
       </div>
     </div>
   )
 }
+
+

@@ -10,7 +10,14 @@ import { bringUserProfile } from '../../services/apiCalls'
 
 export const Profile = () => {
 
-    const [datosPerfilUser, setDatosPerfilUser] = useState({});
+  const [profileDetails, setProfileDetails] = useState({
+    "name": "",
+    "lastname": "",
+    "dni": "",
+    "email": "",
+    "phone": "",
+    "createdAt": "",    
+  });
 
     //Instancio conexion a RDX en modo lectura
   
@@ -27,22 +34,22 @@ export const Profile = () => {
     useEffect(() => {
       bringUserProfile(userRdxData.credentials.user.id, userRdxData.credentials.token)
         .then((results) => {
-          setDatosPerfilUser(results);
+          setProfileDetails(results);
         })
         .catch((error) => console.log(error));
-    }, [datosPerfilUser]);
+    }, [profileDetails]);
   
     return (
       <div className="profileBody">
-        {datosPerfilUser.id !== "" ? (
+        {profileDetails.name !== "" ? (
           <div className="profileContainer">
             <div className="profileContainer2">
-              <div>Name: {datosPerfilUser.data.name}</div>
-              <div>Lastname: {datosPerfilUser.data.lastname}</div>
-              <div>DNI: {datosPerfilUser.data.dni}</div>
-              <div>Email: {datosPerfilUser.data.email}</div>
-              <div>Phone Number: {datosPerfilUser.data.phone}</div>
-              <div>Creation Date: {datosPerfilUser.data.createdAt}</div>
+              <div>Name: {profileDetails.data.name}</div>
+              <div>Lastname: {profileDetails.data.lastname}</div>
+              <div>DNI: {profileDetails.data.dni}</div>
+              <div>Email: {profileDetails.data.email}</div>
+              <div>Phone Number: {profileDetails.data.phone}</div>
+              <div>Creation Date: {profileDetails.data.createdAt}</div>
             </div>
           </div>
           

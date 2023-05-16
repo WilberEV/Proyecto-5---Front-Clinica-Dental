@@ -1,8 +1,6 @@
 import React from 'react'
 import './Home.css'
-import logo from '../../assets/img/logo.svg'
-import block1 from '../../assets/img/homeBlock1.jpg'
-import split from '../../assets/img/homeSplitter.jpg'
+import { images } from '../../components/Images/Images'
 
 export const Home = () => {
 
@@ -11,7 +9,7 @@ export const Home = () => {
     <>
       <div className='homeBody'>
         <div className='homeTitle'>
-          <img src={logo}/>
+          <img src={images.logo}/>
           <img src="https://see.fontimg.com/api/renderfont4/YaaO/eyJyIjoiZnMiLCJoIjoyMDAsInciOjEwMDAsImZzIjoyMDAsImZnYyI6IiMwMDAwMDAiLCJiZ2MiOiIjRkZGRkZGIiwidCI6MX0/SGVwaGFlc3R1cw/aspire-demibold.png"/>
         </div>
         <div className='homeSubtitle'>
@@ -19,10 +17,10 @@ export const Home = () => {
           <img src="https://see.fontimg.com/api/renderfont4/YaaO/eyJyIjoiZnMiLCJoIjoyMDAsInciOjEwMDAsImZzIjoyMDAsImZnYyI6IiMwMDAwMDAiLCJiZ2MiOiIjRkZGRkZGIiwidCI6MX0/b2YgdGhlIEZ1dHVyZQ/aspire-demibold.png" />
         </div>
         <div className='homeSplit'>
-          <img src={split}/>
+          <img src={images.split}/>
         </div>
         <div className='homeBlock1'>
-          <img src={block1}/>
+          <img src={images.block1}/>
           <div className='verticalSplit'></div>
           <p>
             For us, each patient deserves the utmost respect for the trust they place in choosing us. 

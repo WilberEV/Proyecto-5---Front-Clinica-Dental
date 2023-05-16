@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
-import logo from '../../assets/img/logoHeader.svg'
+import { images } from "../Images/Images";
 
 import { useDispatch, useSelector } from "react-redux";
 import { logout, userData } from "../../layouts/userSlice";
@@ -28,7 +28,7 @@ export const Header = () => {
        {!datosUserRedux?.credentials?.token ? (
         <div className="headerBody">
           <div className="headerLogo" onClick={() => navigate("/")}>       
-                <img src={logo}/>
+                <img src={images.logoHeader}/>
                 <img src="https://see.fontimg.com/api/renderfont4/YaaO/eyJyIjoiZnMiLCJoIjoyMDAsInciOjEwMDAsImZzIjoyMDAsImZnYyI6IiNGRkZGRkYiLCJiZ2MiOiIjRkZGRkZGIiwidCI6MX0/SGVwaGFlc3R1cw/aspire-demibold.png" />
               </div>
               <div className="headerOptions">
@@ -55,7 +55,7 @@ export const Header = () => {
 
             <div className="headerBody">
             <div className="headerLogo" onClick={() => navigate("/")}>       
-            <img src={logo}/>
+            <img src={images.logoHeader}/>
             <img src="https://see.fontimg.com/api/renderfont4/YaaO/eyJyIjoiZnMiLCJoIjoyMDAsInciOjEwMDAsImZzIjoyMDAsImZnYyI6IiNGRkZGRkYiLCJiZ2MiOiIjRkZGRkZGIiwidCI6MX0/SGVwaGFlc3R1cw/aspire-demibold.png" />
           </div>
           <div className="headerOptions">
