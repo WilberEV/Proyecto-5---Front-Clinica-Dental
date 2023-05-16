@@ -33,8 +33,6 @@ export const bringDentists = async () => {
 
 export const userSignUp = async (credentials) =>{
 
-  console.log(credentials, '////credentials////')
-
   return await axios.post('http://localhost:3000/user/', credentials);
 
 }

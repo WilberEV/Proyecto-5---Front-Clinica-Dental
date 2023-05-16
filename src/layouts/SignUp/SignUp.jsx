@@ -38,8 +38,7 @@ export const SignUp = () => {
     userSignUp(credentials)
       .then((result) => {
 
-  
-        setMessage(`Welcome to Hephaestus, ${result.data.name} please proceed with the login`);
+        setMessage(`Welcome to Hephaestus, ${result.data.name}, please proceed with the login`);
         //Nos vamos de aqui....
 
         setTimeout(() => {
