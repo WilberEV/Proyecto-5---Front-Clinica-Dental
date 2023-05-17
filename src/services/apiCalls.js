@@ -7,14 +7,14 @@ export const logInAccount = async (credentials) => {
 
 
 export const bringUserProfile = async (id, token) => {
-
     let config = {
         headers: { 
           'Authorization': 'Bearer '+ token,  
         }
       };
 
-    return await axios.get(`https://proyecto-4-clinica-dental-production.up.railway.app/user/${id}`, config);
+      const res = await axios.get(`https://proyecto-4-clinica-dental-production.up.railway.app/user/${id}`, config);
+    return res
 }
 
 

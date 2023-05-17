@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { bringUserProfile } from '../../services/apiCalls'
 import { UserDetails } from '../../components/UserDetails/UserDetails'
 import jwt_decode from "jwt-decode";
+import { InputText } from "../../components/InputText/InputText";
 
 export const Admin = () => {
 
@@ -27,7 +28,6 @@ export const Admin = () => {
 
   useEffect(() => {
     if (!userRdxData.credentials.token) {
-
       const decoded = jwt_decode(userRdxData.credentials.token);
       if (decoded.role !== "ADMIN"){
         navigate("/");
@@ -35,17 +35,24 @@ export const Admin = () => {
     }
   }, []);
 
-  const getUsers = (role) => {
+  const inputHandler = (e) => {
+    setProfileDetails((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
-    bringUserProfile(role, userRdxData.credentials.token).then((results) => {
+  const getUsers = async (role) => {
+
+    await bringUserProfile(role, userRdxData.credentials.token).then((results) => {
         setProfileDetails(results.data);
       })
       .catch((error) => console.log(error));
   };
+  
 
   return (
     <div className="adminBody">
-                  <div>What kind of users are you looking for?</div>
         <div className="adminContainer">
           <div className="adminButtonsContainer">
             <div className="adminButtons" onClick={() => getUsers("USER")}>Users</div>
@@ -62,7 +69,7 @@ export const Admin = () => {
                     <div key={person._id}>
                       <UserDetails
                         name={['Name: ', person.name]}
-                        status={['Lastname: ',person.lastname]}
+                        lastname={['Lastname: ',person.lastname]}
                         dni={['DNI: ',person.dni]}
                         email={['Email: ',person.email]}
                         phone={['Phone number: ',person.phone]}
@@ -76,6 +83,18 @@ export const Admin = () => {
               </div>
               )}
 
+          </div>
+          <div>
+            <div>
+            <InputText
+              type={"email"}
+              className={"basicInput"}
+              placeholder={""}
+              name={"email"}
+              handler={inputHandler}
+            />
+              <div className="adminButtons" onClick={() => getUsers(profileDetails.email)}>Users</div>
+            </div>
           </div>
         </div>
     </div>
