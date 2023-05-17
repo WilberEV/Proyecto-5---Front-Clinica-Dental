@@ -37,17 +37,15 @@ export const Admin = () => {
 
   const getUsers = (role) => {
 
-    bringUserProfile(role, userRdxData.credentials.token)
-
-      .then((results) => {
-
-        setProfileDetails(results);
+    bringUserProfile(role, userRdxData.credentials.token).then((results) => {
+        setProfileDetails(results.data);
       })
       .catch((error) => console.log(error));
   };
 
   return (
     <div className="adminBody">
+                  <div>What kind of users are you looking for?</div>
         <div className="adminContainer">
           <div className="adminButtonsContainer">
             <div className="adminButtons" onClick={() => getUsers("USER")}>Users</div>
@@ -56,30 +54,27 @@ export const Admin = () => {
             <div className="adminButtons">Appointments</div>
           </div>
           <div className="adminInfo">
-            <div>What kind of users are you lookginf for?</div>
 
-            <div>
               {profileDetails.length > 0 && (
-              <div className="charactersDesign">
+              <div className="userInformation">
                 {profileDetails.map((person) => {
                   return (
                     <div key={person._id}>
                       <UserDetails
-                        name={person.name}
-                        status={person.lastname}
-                        dni={person.dni}
-                        email={person.email}
-                        phone={person.phone}
-                        role={person.role}
-                        createdAt={person.createdAt}
-                        updatedAt={person.updatedAt}
+                        name={['Name: ', person.name]}
+                        status={['Lastname: ',person.lastname]}
+                        dni={['DNI: ',person.dni]}
+                        email={['Email: ',person.email]}
+                        phone={['Phone number: ',person.phone]}
+                        role={['Role: ',person.role]}
+                        createdAt={['Creation Date: ',person.createdAt]}
+                        updatedAt={['Last update: ',person.updatedAt]}
                       />
                     </div>
                   );
                 })}
               </div>
               )}
-            </div>
 
           </div>
         </div>
