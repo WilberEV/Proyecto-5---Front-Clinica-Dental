@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 import "./SignUp.css";
 
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import jwt_decode from "jwt-decode";
+import { useSelector } from "react-redux";
 import { InputText } from "../../components/InputText/InputText";
 import { userSignUp } from "../../services/apiCalls";
-import { login, userData } from "../userSlice"
+import { userData } from "../userSlice"
 
 export const SignUp = () => {
-  const dispatch = useDispatch();
+
   const userRdxData = useSelector(userData);
   const navigate = useNavigate();
 

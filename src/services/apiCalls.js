@@ -13,24 +13,67 @@ export const bringUserProfile = async (id, token) => {
         }
       };
 
-      const res = await axios.get(`https://proyecto-4-clinica-dental-production.up.railway.app/user/${id}`, config);
-    return res
+    return await axios.get(`https://proyecto-4-clinica-dental-production.up.railway.app/user/${id}`, config);
+}
+
+export const bringDentists = async (id, token) => {
+
+  let config = {
+      headers: { 
+        'Authorization': 'Bearer '+ token,  
+      }
+    };
+
+  return await axios.get(`https://proyecto-4-clinica-dental-production.up.railway.app/user/${id}`, config);
 }
 
 
-// export const bringDentists = async () => {
+export const updateUserProfile = async (id, data, token) => {
+  let config = {
+    headers: { 
+      'Authorization': 'Bearer '+ token,
+    },
+  };
+  let body = {};
+    if (data.email !== "") {
+      body.email = data.email;
+    }
+    if (data.phone !== "") {
+      body.phone = data.phone;
+    }
+    if (data.password !== "") {
+      body.password = data.password;
+    }
 
-//   let config = {
-//     headers: { 
-//       'Authorization': 'Bearer '+ token,  
-//     }
-//   };
-
-//   return await axios.get(`https://proyecto-4-clinica-dental-production.up.railway.app/user/dentist`, config);
-// }
+   console.log(body, 'SIDE CHEST')
+  return await axios.put(`https://proyecto-4-clinica-dental-production.up.railway.app/user/${id}`, body, config);
+}
 
 export const userSignUp = async (credentials) =>{
 
   return await axios.post('https://proyecto-4-clinica-dental-production.up.railway.app/user/', credentials);
+
+}
+
+export const findAppointment = async (start, end, token) => {
+
+  let config = {
+      headers: { 
+        'Authorization': 'Bearer '+ token,  
+      }
+    };
+
+  return await axios.get(`https://proyecto-4-clinica-dental-production.up.railway.app/appointments?start=${start}&end=${end}`, config);
+}
+
+export const generateAppointment = async (data, token) =>{
+
+  let config = {
+    headers: { 
+      'Authorization': 'Bearer '+ token,
+    },
+  };
+
+  return await axios.post('https://proyecto-4-clinica-dental-production.up.railway.app/appointments/', data, config);
 
 }

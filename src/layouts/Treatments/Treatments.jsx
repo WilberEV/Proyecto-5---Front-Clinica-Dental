@@ -1,12 +1,32 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import './Treatments.css'
 import { useNavigate } from "react-router-dom";
 import { images } from '../../components/Images/Images';
+import { Modals } from '../../components/Modals/Modals';
+import { TreatmentDetails } from "../../components/TreatmentDetails/TreatmentDetails";
+import { detailData, bringDetails } from "../detailSlice";
 
 
 export const Treatments = () => {
 
+  const treatmentRdxData = useSelector(detailData);
+  const dispatch = useDispatch();
+
   const navigate = useNavigate()
+
+  const detailHandler = (e) => {
+    TreatmentDetails(e)
+    .then((result) => {
+      const datos = {
+        name: result.name,
+        description: result.description
+      }
+    //Una vez tengo el token, lo guardo con el dispatch
+    dispatch(bringDetails({ datos }));
+    })
+    .catch((error) => console.log(error));
+  }
 
   return (
     <div className='treatmentsBody'>
@@ -14,6 +34,7 @@ export const Treatments = () => {
         <div className='treatmentsCard' onClick={() => navigate("/appointments")}>
           <img src={images.orthodontics}/>
           <p>Orthodontics</p>
+          <Modals/>
         </div>
         <div className='treatmentsCard' onClick={() => navigate("/appointments")}>
           <img src={images.dentures}/>

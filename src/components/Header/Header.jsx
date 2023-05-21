@@ -16,11 +16,8 @@ export const Header = () => {
 
 
   const logMeOut = () => {
+    navigate("/")
     dispatch(logout({ credentials: {}}));
-
-    setTimeout(()=>{
-      navigate("/");
-    },500)
   }
 
   return (

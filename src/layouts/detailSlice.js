@@ -7,18 +7,12 @@ export const detailSlice = createSlice({
       data: {}
     },
     reducers: {
-      addCharacter: (state, action) => {
+      bringDetails: (state, action) => {
         return {
           ...state,
           ...action.payload
         }
       },
-      clearCharacter: (state, action) => {
-        return {
-          ...state,
-          ...action.payload
-        }
-      }
       
     }
     
@@ -27,7 +21,7 @@ export const detailSlice = createSlice({
 //exporto las ACCIONES.....
 
 //Modo ESCRITURA
-export const { addCharacter, clearCharacter } = detailSlice.actions;
+export const { bringDetails } = detailSlice.actions;
 
 
 //Modo LECTURA

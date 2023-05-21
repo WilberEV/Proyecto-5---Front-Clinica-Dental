@@ -1,68 +1,229 @@
-// import React, { useState, useEffect } from "react";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import "./Appointments.css";
-// import { bringDentists } from "../../services/apiCalls";
-// import { useSelector } from "react-redux";
-// import { userData } from "../userSlice";
+import React, { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./Appointments.css";
+import {
+  bringDentists,
+  bringUserProfile,
+  findAppointment,
+  generateAppointment,
+} from "../../services/apiCalls";
+import { useSelector } from "react-redux";
+import { userData } from "../userSlice";
 
-//Bootstrap
-// import Dropdown from "react-bootstrap/Dropdown";
+import Dropdown from "react-bootstrap/Dropdown";
 
 export const Appointments = () => {
-  // const userRdxData = useSelector(userData);
+  const userRdxData = useSelector(userData);
+  const [dentistList, setDentistList] = useState([]);
+  const [searchApp, setSearchApp] = useState(false);
+  const [newAppointment, setNewAppointment] = useState(false);
 
-  // const [dentists, setDentists] = useState([]);
-  // const [orderInfo, setOrderInfo] = useState({
-  //   customerId: userRdxData.credentials.user.id,
-  //   professionalId: "",
-  // });
+  //Hooks
+  const [userDetails, setUserDetails] = useState({
+    name: "",
+    lastname: "",
+    email: "",
+    phone: "",
+  });
+
+  const [appointmentsDetails, setAppointmentsDetails] = useState({
+    client: userRdxData.credentials.token,
+    doctor: "",
+    start: "",
+    end: "",
+  });
+
+  const [newAppointmentData, setNewAppointmentData] = useState({
+    client: userRdxData.credentials.user.id,
+    doctor: "",
+    start: "",
+    end: "",
+  });
 
   // useEffect(() => {
-  //   if (dentists.length === 0) {
-  //     bringDentists()
-  //       .then((results) => {
-  //         setDentists(results.data);
-  //       })
-  //       .catch((error) => console.log(error));
-  //   }
-  // }, [dentists]);
+  //   console.log(appointmentData);
+  //   console.log(userRdxData.credentials);
+  // }, []);
 
-  // useEffect(() => {
-  //   console.log(orderInfo);
-  // }, [orderInfo]);
+  //Bring User's profile data
+  useEffect(() => {
+    bringUserProfile(
+      userRdxData.credentials.user.id,
+      userRdxData.credentials.token
+    )
+      .then((results) => {
+        setUserDetails(results);
+      })
+      .catch((error) => console.log(error));
+  }, [userDetails]);
 
-  // const dropHandler = (pro) => {
-  //   setOrderInfo((prevState) => ({
-  //     ...prevState,
-  //     professionalId: pro._id,
-  //   }));
-  // };
+  //Bring list of doctors
+  useEffect(() => {
+    if (dentistList.length === 0) {
+      bringDentists("DOCTOR", userRdxData.credentials.token)
+        .then((results) => {
+          setDentistList(results.data);
+        })
+        .catch((error) => console.log(error));
+    }
+  }, [dentistList]);
 
-  // return (
-  //   <div className="appointmentsBody">
-  //     <div>
-  //       {dentists.length > 0 && (
-  //         <Dropdown>
-  //           <Dropdown.Toggle variant="success" id="dropdown-basic">
-  //             Dropdown Button
-  //           </Dropdown.Toggle>
+  //Bring User's apppointments data
+  const getAppointments = () => {
+    findAppointment("", "", appointmentsDetails.client)
+      .then((results) => {
+        lookForApp(), setAppointmentsDetails(results.data);
+      })
+      .catch((error) => console.log(error));
+  };
 
-  //           <Dropdown.Menu>
-  //             {dentists.map((professional) => {
-  //               return (
-  //                 <Dropdown.Item
-  //                   key={professional._id}
-  //                   href="#/action-1"
-  //                   onClick={() => dropHandler(professional)}
-  //                 >
-  //                   {professional.name}
-  //                 </Dropdown.Item>
-  //               );
-  //             })}
-  //           </Dropdown.Menu>
-  //         </Dropdown>
-  //       )}
-  //     </div>
-  //   </div>
-  // );
+  //Set Doctor for the appointment
+  const appDoctorHandler = (e) => {
+    setNewAppointmentData((prevState) => ({
+      ...prevState,
+      doctor: e._id,
+    }));
+  };
+
+  //Set start and end date for a new Appointment
+  const appDateHandler = (e) => {
+    const selectedStart = e.target.value;
+    const selectedEnd = new Date(selectedStart);
+    selectedEnd.setHours(selectedEnd.getHours() + 2);
+    selectedEnd.setMinutes(selectedEnd.getMinutes() + 40);
+
+    setNewAppointmentData((prevState) => ({
+      ...prevState,
+      start: selectedStart,
+      end: selectedEnd.toISOString().slice(0, 16),
+    }));
+  };
+
+  //Functions
+  const confirmNewAppointment = () => {
+    generateAppointment(newAppointmentData, userRdxData.credentials.token)
+      .then(() => {
+        setNewAppointment(false);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const lookForApp = () => setSearchApp(true);
+  const dontLookForApp = () => setSearchApp(false);
+  const createAppointment = () => setNewAppointment(true);
+  const dontCreateAppointment = () => setNewAppointment(false);
+
+  return (
+    <div className="appointmentsBody">
+      <div className="appointmentsContainer">
+        {newAppointment == true && searchApp == false && (
+          <div className="appointmentsContainer2">
+            <div>Client's details</div>
+
+            <div className="profileContainer2">
+              <div>Name: {userDetails.data.name}</div>
+              <div>Lastname: {userDetails.data.lastname}</div>
+              <div>Email: {userDetails.data.email}</div>
+              <div>Phone Number: {userDetails.data.phone}</div>
+            </div>
+
+            <div>Please select your Doctor</div>
+
+            <div>
+              {dentistList.length > 0 && (
+                <Dropdown>
+                  <Dropdown.Toggle variant="success" id="dropdown-basic">
+                    Select your Doctor
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu>
+                    {dentistList.map((professional) => {
+                      return (
+                        <Dropdown.Item
+                          key={professional._id}
+                          href="#/action-1"
+                          onClick={() => appDoctorHandler(professional)}
+                        >
+                          {professional.name} {professional.lastname}
+                        </Dropdown.Item>
+                      );
+                    })}
+                  </Dropdown.Menu>
+                </Dropdown>
+              )}
+              <div>{newAppointmentData.doctor}</div>
+            </div>
+            <div>Please select a date</div>
+            <div>
+              <input
+                type="datetime-local"
+                id="start"
+                name="start"
+                min="2023-05-22T08:00"
+                max="2024-12-31T18:00"
+                onChange={(e) => appDateHandler(e)}
+              />
+            </div>
+            <div
+              className="profileButton"
+              onClick={() => confirmNewAppointment()}
+            >
+              Confirm
+            </div>
+            <div
+              className="profileButton"
+              onClick={() => dontCreateAppointment()}
+            >
+              Cancel
+            </div>
+          </div>
+        )}
+
+        {newAppointment == false && searchApp == true && (
+          <div className="appointmentsContainer2">
+            {appointmentsDetails.doctor !== "" ? (
+              <div className="profileContainer2">
+                {appointmentsDetails.length > 0 && (
+                  <div>
+                    {appointmentsDetails.map((appInfo) => {
+                      return (
+                        <div className="appInformation" key={appInfo._id}>
+                          <div className="userSplit"></div>
+                          <div>ID: {appInfo._id}</div>
+                          <div>Client: {appInfo.client}</div>
+                          <div>Doctor: {appInfo.doctor}</div>
+                          <div>Start: {appInfo.start}</div>
+                          <div>End: {appInfo.end}</div>
+                          <div className="userSplit"></div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+                <div
+                  className="profileButton"
+                  onClick={() => dontLookForApp()}
+                >
+                  Go back
+                </div>
+              </div>
+            ) : (
+              <div>CARGANDO</div>
+            )}
+          </div>
+        )}
+
+        {newAppointment == false && searchApp == false && (
+          <div className="appointmentsContainer2">
+            <div className="profileButton" onClick={() => getAppointments()}>
+              My appointments
+            </div>
+            <div className="profileButton" onClick={() => createAppointment()}>
+              New Appointment
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };

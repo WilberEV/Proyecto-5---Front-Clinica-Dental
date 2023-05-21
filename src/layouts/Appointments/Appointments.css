@@ -1,5 +1,5 @@
 .appointmentsBody{
-    height: 73vh;
+    height: 75vh;
     width: 100vw;
 
     display: flex;
@@ -7,4 +7,28 @@
     align-items: center;
 
     background-color: #E5E5E5;
+}
+
+.appointmentsContainer{
+    height: 40vh;
+    width: 30vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background-color: #a6a6a6;
+    border-radius: 1em;
+}
+
+.appointmentsContainer2{
+    height: 30vh;
+    width: 25vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+
 }

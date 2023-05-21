@@ -4,8 +4,15 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Modal from "react-bootstrap/Modal";
+import './Modals.css'
+import { detailData } from "../../layouts/detailSlice";
+import { useDispatch, useSelector } from "react-redux";
+
 
 export const Modals = (props) => {
+
+  const treatmentRdxData = useSelector(detailData);
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -13,7 +20,7 @@ export const Modals = (props) => {
 
   return (
     <>
-      <div className="loginButtonDesign" onClick={()=> handleShow()}>Login!</div>
+      <div className="modalButton" onClick={()=> handleShow()}>Details</div>
 
       <Modal show={show} onHide={handleClose} centered>
       <Modal.Header closeButton>
@@ -25,12 +32,12 @@ export const Modals = (props) => {
         <Container>
           <Row>
             <Col lg={12} xs={12} md={8}>
-              Nombre: nombre falso
+              Nombre: {}
             </Col>
             </Row>
             <Row>
             <Col lg={12} xs={12} md={4}>
-              Doctor: no tiene licencia
+              Doctor: {}
             </Col>
           </Row>
 
