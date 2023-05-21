@@ -3,7 +3,11 @@ import "./Admin.css";
 import { useSelector } from "react-redux";
 import { userData } from "../userSlice";
 import { useNavigate } from "react-router-dom";
-import { bringUserProfile, findAppointment } from "../../services/apiCalls";
+import {
+  bringUserProfile,
+  findAppointment,
+  updateAppointment,
+} from "../../services/apiCalls";
 import jwt_decode from "jwt-decode";
 import { InputText } from "../../components/InputText/InputText";
 
@@ -32,8 +36,16 @@ export const Admin = () => {
     end: "",
   });
 
-  const [userEmail, setUserEmail] = useState({
-    email: "",
+  const [userID, setUserID] = useState({
+    id: "",
+  });
+
+  const [appID, setAppID] = useState({
+    _id: "",
+    doctor: "",
+    start: "",
+    end: "",
+    active: "",
   });
 
   const userRdxData = useSelector(userData);
@@ -47,17 +59,11 @@ export const Admin = () => {
     }
   }, []);
 
-  const inputHandler = (e) => {
-    setUserEmail((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
   const getUsers = (role) => {
     bringUserProfile(role, userRdxData.credentials.token)
       .then((results) => {
         dontLookForApp();
+        dontFindForApp();
         setProfileDetails(results.data);
       })
       .catch((error) => console.log(error));
@@ -71,13 +77,43 @@ export const Admin = () => {
       .catch((error) => console.log(error));
   };
 
-  const updateAppHandler = (e) => {
-    findApp(),
-      setAppointmentsDetails((prevState) => ({
-        ...prevState,
-        [e.target.name]: e.target.value,
-      }));
+  const editAppointments = () => {
+    updateAppointment(appID, userRdxData.credentials.token)
+      .then((results) => {
+        dontLookForApp(), setAppointmentsDetails(results.data);
+      })
+      .catch((error) => console.log(error));
   };
+
+  //Hadlers
+  const userHandler = (e) => {
+    setUserID((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const updateAppHandler = (e) => {
+    findApp();
+    setAppID((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const appDateHandler = (e) => {
+    const selectedStart = e.target.value;
+    const selectedEnd = new Date(selectedStart);
+    selectedEnd.setHours(selectedEnd.getHours() + 2);
+    selectedEnd.setMinutes(selectedEnd.getMinutes() + 40);
+
+    setAppID((prevState) => ({
+      ...prevState,
+      start: selectedStart,
+      end: selectedEnd.toISOString().slice(0, 16),
+    }));
+  };
+
   const lookForApp = () => setSearchApp(true);
   const dontLookForApp = () => setSearchApp(false);
   const findApp = () => setEditApp(true);
@@ -101,27 +137,29 @@ export const Admin = () => {
           </div>
         </div>
         <div className="adminInfo">
-          {profileDetails.length > 0 && searchApp === false && (
-            <div>
-              {profileDetails.map((person) => {
-                return (
-                  <div className="userInformation" key={person._id}>
-                    <div className="userSplit"></div>
-                    <div>ID: {person._id}</div>
-                    <div>Name: {person.name}</div>
-                    <div>Lastname: {person.lastname}</div>
-                    <div>DNI: {person.dni}</div>
-                    <div>Email: {person.email}</div>
-                    <div>Phone number: {person.phone}</div>
-                    <div>Role: {person.role}</div>
-                    <div>Creation Date: {person.createdAt}</div>
-                    <div>Last update: {person.updatedAt}</div>
-                    <div className="userSplit"></div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
+          {profileDetails.length > 0 &&
+            searchApp === false &&
+            editApp === false && (
+              <div>
+                {profileDetails.map((person) => {
+                  return (
+                    <div className="userInformation" key={person._id}>
+                      <div className="userSplit"></div>
+                      <div>ID: {person._id}</div>
+                      <div>Name: {person.name}</div>
+                      <div>Lastname: {person.lastname}</div>
+                      <div>DNI: {person.dni}</div>
+                      <div>Email: {person.email}</div>
+                      <div>Phone number: {person.phone}</div>
+                      <div>Role: {person.role}</div>
+                      <div>Creation Date: {person.createdAt}</div>
+                      <div>Last update: {person.updatedAt}</div>
+                      <div className="userSplit"></div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
 
           {appointmentsDetails.length > 0 &&
             searchApp === true &&
@@ -147,65 +185,91 @@ export const Admin = () => {
             searchApp === true &&
             editApp === true && (
               <div>
-                <div className="appInformation" key={appInfo._id}>
+                <div className="appInformation">
                   <InputText
                     type={"doctor"}
                     className={"basicInput"}
-                    defaultValue={appointmentsDetails.doctor}
+                    placeholder={"Doctor's ID"}
                     name={"doctor"}
                     handler={updateAppHandler}
                   />
-                  <InputText
-                    type={"start"}
-                    className={"basicInput"}
-                    name={"start"}
-                    defaultValue={appointmentsDetails.start}
-                    handler={updateAppHandler}
+                  <input
+                    type="datetime-local"
+                    id="start"
+                    name="start"
+                    min="2023-05-22T08:00"
+                    max="2024-12-31T18:00"
+                    onChange={(e) => appDateHandler(e)}
                   />
-                  <InputText
-                    type={"end"}
-                    className={"basicInput"}
-                    name={"end"}
-                    defaultValue={appointmentsDetails.end}
-                    handler={updateAppHandler}
+                  <div>Is the Appointment active?</div>
+                  <input
+                    type="checkbox"
+                    id="active"
+                    name="active"
+                    onChange={(e) => updateAppHandler(e)}
                   />
                 </div>
               </div>
             )}
+
+          {appointmentsDetails.length > 0 &&
+            searchApp === false &&
+            editApp === true && (
+              <div className="userInformation">
+                <div>Client: {appointmentsDetails.client}</div>
+                <div>Doctor: {appointmentsDetails.doctor}</div>
+                <div>Start: {appointmentsDetails.start}</div>
+                <div>End: {appointmentsDetails.end}</div>
+              </div>
+            )}
         </div>
-        <div className="adminRigthContainer">
-          <InputText
-            type={"email"}
-            className={"basicInput"}
-            placeholder={""}
-            name={"email"}
-            handler={inputHandler}
-          />
-          <div className="adminRigthButtonsContainer">
-            {searchApp === false && (
+
+        {searchApp === false && (
+          <div className="adminRigthContainer">
+            <InputText
+              type={"id"}
+              className={"basicInput"}
+              placeholder={"User's ID"}
+              name={"id"}
+              handler={userHandler}
+            />
+            <div className="adminRigthButtonsContainer">
               <div
                 className="adminRigthButtons"
-                onClick={() => getUsers(userEmail.email)}
+                onClick={() => getUsers(userID.id)}
               >
                 Find
               </div>
-            )}
-            {searchApp === true && (
+
               <div
                 className="adminRigthButtons"
-                onClick={() => getAppointments()}
+                onClick={() => updateAppHandler(appID)}
               >
-                Find
+                Edit
               </div>
-            )}
-            <div
-              className="adminRigthButtons"
-              onClick={() => updateAppHandler()}
-            >
-              Edit
             </div>
           </div>
-        </div>
+        )}
+
+        {searchApp === true && (
+          <div className="adminRigthContainer">
+            <InputText
+              type={"_id"}
+              className={"basicInput"}
+              placeholder={"Appointments' ID"}
+              name={"_id"}
+              handler={updateAppHandler}
+            />
+            <div className="adminRigthButtonsContainer">
+              <div
+                className="adminRigthButtons"
+                onClick={() => editAppointments()}
+              >
+                Edit
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

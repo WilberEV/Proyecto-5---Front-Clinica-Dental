@@ -7,6 +7,7 @@ export const logInAccount = async (credentials) => {
 
 
 export const bringUserProfile = async (id, token) => {
+
     let config = {
         headers: { 
           'Authorization': 'Bearer '+ token,  
@@ -45,7 +46,6 @@ export const updateUserProfile = async (id, data, token) => {
       body.password = data.password;
     }
 
-   console.log(body, 'SIDE CHEST')
   return await axios.put(`https://proyecto-4-clinica-dental-production.up.railway.app/user/${id}`, body, config);
 }
 
@@ -76,4 +76,31 @@ export const generateAppointment = async (data, token) =>{
 
   return await axios.post('https://proyecto-4-clinica-dental-production.up.railway.app/appointments/', data, config);
 
+}
+
+export const updateAppointment = async (data, token) =>{
+
+  let config = {
+    headers: { 
+      'Authorization': 'Bearer '+ token,
+    },
+  };
+
+  let ID = data._id;
+
+  let body = {};
+    if (data.doctor !== "") {
+      body.doctor = data.doctor;
+    }
+    if (data.start !== "") {
+      body.start = data.start;
+    }
+    if (data.end !== "") {
+      body.end = data.end;
+    }
+
+
+    console.log(body, 'SIDE CHEST')
+
+  return await axios.patch(`https://proyecto-4-clinica-dental-production.up.railway.app/appointments/${ID}`, body, config);
 }

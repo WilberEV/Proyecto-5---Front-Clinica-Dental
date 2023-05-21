@@ -4,7 +4,6 @@ import './Treatments.css'
 import { useNavigate } from "react-router-dom";
 import { images } from '../../components/Images/Images';
 import { Modals } from '../../components/Modals/Modals';
-import { TreatmentDetails } from "../../components/TreatmentDetails/TreatmentDetails";
 import { detailData, bringDetails } from "../detailSlice";
 
 
@@ -31,7 +30,7 @@ export const Treatments = () => {
   return (
     <div className='treatmentsBody'>
       <div className='treatmentsGrid'>
-        <div className='treatmentsCard' onClick={() => navigate("/appointments")}>
+        <div className='treatmentsCard' onClick={() => console.log(1)}>
           <img src={images.orthodontics}/>
           <p>Orthodontics</p>
           <Modals/>

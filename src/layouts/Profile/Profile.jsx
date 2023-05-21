@@ -17,10 +17,10 @@ export const Profile = () => {
   });
 
   const [newData, setNewData] = useState({
-    email: '',
-    phone: '',
-    password: ''
-  })
+    email: "",
+    phone: "",
+    password: "",
+  });
 
   const [editUser, setEditUser] = useState(false);
 
@@ -42,7 +42,7 @@ export const Profile = () => {
       userRdxData.credentials.token
     )
       .then((results) => {
-        setProfileDetails(results);
+        setProfileDetails(results.data);
       })
       .catch((error) => console.log(error));
   }, [profileDetails]);
@@ -54,33 +54,36 @@ export const Profile = () => {
     }));
   };
 
-  const updateUser = () =>{
+  const updateUser = () => {
     updateUserProfile(
       userRdxData.credentials.user.id,
       newData,
       userRdxData.credentials.token
-      )
+    )
       .then(() => dontChangeUser())
-      .catch((error)=> console.group(error))  
-  }
+      .catch((error) => console.group(error));
+  };
 
   const changeUser = () => setEditUser(true);
   const dontChangeUser = () => setEditUser(false);
 
-
   return (
     <div className="profileBody">
-
-
       {editUser == false && (
         <div className="profileContainer">
           {profileDetails.name !== "" ? (
-            <div className="profileContainer2">
-              <div>Name: {profileDetails.data.name}</div>
-              <div>Lastname: {profileDetails.data.lastname}</div>
-              <div>DNI: {profileDetails.data.dni}</div>
-              <div>Email: {profileDetails.data.email}</div>
-              <div>Phone Number: {profileDetails.data.phone}</div>
+            <div>
+              {profileDetails.map((person) => {
+                return (
+                  <div className="profileContainer2" key={person._id}>
+                    <div>Name: {person.name}</div>
+                    <div>Lastname: {person.lastname}</div>
+                    <div>DNI: {person.dni}</div>
+                    <div>Email: {person.email}</div>
+                    <div>Phone number: {person.phone}</div>
+                  </div>
+                );
+              })}
             </div>
           ) : (
             <div>CARGANDO</div>
@@ -88,31 +91,36 @@ export const Profile = () => {
         </div>
       )}
 
-
       {editUser == true && (
         <div className="profileContainer">
-          <div className="profileContainer2">
-          <InputText
-              type={"email"}
-              className={"basicInput"}
-              defaultValue={profileDetails.data.email}
-              name={"email"}
-              handler={inputHandler}
-            />
-          <InputText
-              type={"phone"}
-              className={"basicInput"}
-              name={"phone"}
-              defaultValue={profileDetails.data.phone}
-              handler={inputHandler}
-            />
-          <InputText
-              type={"password"}
-              className={"basicInput"}
-              placeholder={"Password"}
-              name={"password"}
-              handler={inputHandler}
-            />
+          <div>
+            {profileDetails.map((person) => {
+              return (
+                <div className="profileContainer2" key={person._id}>
+                  <InputText
+                    type={"email"}
+                    className={"basicInput"}
+                    defaultValue={person.email}
+                    name={"email"}
+                    handler={inputHandler}
+                  />
+                  <InputText
+                    type={"phone"}
+                    className={"basicInput"}
+                    name={"phone"}
+                    defaultValue={person.phone}
+                    handler={inputHandler}
+                  />
+                  <InputText
+                    type={"password"}
+                    className={"basicInput"}
+                    placeholder={"Password"}
+                    name={"password"}
+                    handler={inputHandler}
+                  />
+                </div>
+              );
+            })}
           </div>
           <div className="profileButton" onClick={() => updateUser()}>
           Change
@@ -126,7 +134,10 @@ export const Profile = () => {
         <div className="profileButton" onClick={() => changeUser()}>
           Edit
         </div>
-        <div className="profileButton" onClick={() => navigate("/appointments")}>
+        <div
+          className="profileButton"
+          onClick={() => navigate("/appointments")}
+        >
           Appointments
         </div>
       </div>
