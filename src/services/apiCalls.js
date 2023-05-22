@@ -104,3 +104,8 @@ export const updateAppointment = async (data, token) =>{
 
   return await axios.patch(`https://proyecto-4-clinica-dental-production.up.railway.app/appointments/${ID}`, body, config);
 }
+
+export const getTreatment = async (name) => {
+
+  return await axios.get(`https://proyecto-4-clinica-dental-production.up.railway.app/treatment/${name}`)
+}

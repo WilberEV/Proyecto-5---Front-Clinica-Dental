@@ -18,6 +18,12 @@ export const Appointments = () => {
   const [searchApp, setSearchApp] = useState(false);
   const [newAppointment, setNewAppointment] = useState(false);
 
+  useEffect(() => {
+    if (!userRdxData.credentials.token) {
+      navigate("/");
+    }
+  }, []);
+
   //Hooks
   const [userDetails, setUserDetails] = useState({
     name: "",
@@ -40,11 +46,6 @@ export const Appointments = () => {
     end: "",
   });
 
-  // useEffect(() => {
-  //   console.log(appointmentData);
-  //   console.log(userRdxData.credentials);
-  // }, []);
-
   //Bring User's profile data
   useEffect(() => {
     bringUserProfile(
@@ -52,7 +53,7 @@ export const Appointments = () => {
       userRdxData.credentials.token
     )
       .then((results) => {
-        setUserDetails(results);
+        setUserDetails(results.data);
       })
       .catch((error) => console.log(error));
   }, [userDetails]);
@@ -115,66 +116,87 @@ export const Appointments = () => {
 
   return (
     <div className="appointmentsBody">
+      {newAppointment == false && searchApp == false && (
+        <div className="appointmentsButtonContainer">
+          <div className="profileButton" onClick={() => getAppointments()}>
+            My appointments
+          </div>
+          <div className="profileButton" onClick={() => createAppointment()}>
+            New Appointment
+          </div>
+        </div>
+      )}
+
       <div className="appointmentsContainer">
         {newAppointment == true && searchApp == false && (
-          <div className="appointmentsContainer2">
-            <div>Client's details</div>
+          <div>
+            <div className="appointmentsContainer2">
+              <div>Client's details</div>
 
-            <div className="profileContainer2">
-              <div>Name: {userDetails.data.name}</div>
-              <div>Lastname: {userDetails.data.lastname}</div>
-              <div>Email: {userDetails.data.email}</div>
-              <div>Phone Number: {userDetails.data.phone}</div>
-            </div>
+              <div className="appointmentsContainer2">
+                {userDetails.map((person) => {
+                  return (
+                    <div>
+                      <div>Name: {person.name}</div>
+                      <div>Lastname: {person.lastname}</div>
+                      <div>Email: {person.email}</div>
+                      <div>Phone Number: {person.phone}</div>
+                    </div>
+                  );
+                })}
+              </div>
 
-            <div>Please select your Doctor</div>
+              <div>Please select your Doctor</div>
 
-            <div>
-              {dentistList.length > 0 && (
-                <Dropdown>
-                  <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    Select your Doctor
-                  </Dropdown.Toggle>
+              <div>
+                {dentistList.length > 0 && (
+                  <Dropdown>
+                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                      Select your Doctor
+                    </Dropdown.Toggle>
 
-                  <Dropdown.Menu>
-                    {dentistList.map((professional) => {
-                      return (
-                        <Dropdown.Item
-                          key={professional._id}
-                          href="#/action-1"
-                          onClick={() => appDoctorHandler(professional)}
-                        >
-                          {professional.name} {professional.lastname}
-                        </Dropdown.Item>
-                      );
-                    })}
-                  </Dropdown.Menu>
-                </Dropdown>
-              )}
-              <div>{newAppointmentData.doctor}</div>
+                    <Dropdown.Menu>
+                      {dentistList.map((professional) => {
+                        return (
+                          <Dropdown.Item
+                            key={professional._id}
+                            href="#/action-1"
+                            onClick={() => appDoctorHandler(professional)}
+                          >
+                            {professional.name} {professional.lastname}
+                          </Dropdown.Item>
+                        );
+                      })}
+                    </Dropdown.Menu>
+                  </Dropdown>
+                )}
+                <div>{newAppointmentData.doctor}</div>
+              </div>
+              <div>Please select a date</div>
+              <div>
+                <input
+                  type="datetime-local"
+                  id="start"
+                  name="start"
+                  min="2023-05-22T08:00"
+                  max="2024-12-31T18:00"
+                  onChange={(e) => appDateHandler(e)}
+                />
+              </div>
             </div>
-            <div>Please select a date</div>
-            <div>
-              <input
-                type="datetime-local"
-                id="start"
-                name="start"
-                min="2023-05-22T08:00"
-                max="2024-12-31T18:00"
-                onChange={(e) => appDateHandler(e)}
-              />
-            </div>
-            <div
-              className="profileButton"
-              onClick={() => confirmNewAppointment()}
-            >
-              Confirm
-            </div>
-            <div
-              className="profileButton"
-              onClick={() => dontCreateAppointment()}
-            >
-              Cancel
+            <div className="appointmentButtonContainer">
+              <div
+                className="appointmentButton"
+                onClick={() => confirmNewAppointment()}
+              >
+                Confirm
+              </div>
+              <div
+                className="appointmentButton"
+                onClick={() => dontCreateAppointment()}
+              >
+                Cancel
+              </div>
             </div>
           </div>
         )}
@@ -200,27 +222,13 @@ export const Appointments = () => {
                     })}
                   </div>
                 )}
-                <div
-                  className="profileButton"
-                  onClick={() => dontLookForApp()}
-                >
+                <div className="appointmentButton" onClick={() => dontLookForApp()}>
                   Go back
                 </div>
               </div>
             ) : (
               <div>CARGANDO</div>
             )}
-          </div>
-        )}
-
-        {newAppointment == false && searchApp == false && (
-          <div className="appointmentsContainer2">
-            <div className="profileButton" onClick={() => getAppointments()}>
-              My appointments
-            </div>
-            <div className="profileButton" onClick={() => createAppointment()}>
-              New Appointment
-            </div>
           </div>
         )}
       </div>

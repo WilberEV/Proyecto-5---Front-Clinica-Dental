@@ -3,11 +3,7 @@ import "./Admin.css";
 import { useSelector } from "react-redux";
 import { userData } from "../userSlice";
 import { useNavigate } from "react-router-dom";
-import {
-  bringUserProfile,
-  findAppointment,
-  updateAppointment,
-} from "../../services/apiCalls";
+import { bringUserProfile, findAppointment, updateAppointment,} from "../../services/apiCalls";
 import jwt_decode from "jwt-decode";
 import { InputText } from "../../components/InputText/InputText";
 

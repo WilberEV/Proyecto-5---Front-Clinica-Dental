@@ -71,6 +71,7 @@ export const Profile = () => {
     <div className="profileBody">
       {editUser == false && (
         <div className="profileContainer">
+          <h3>User details</h3>
           {profileDetails.name !== "" ? (
             <div>
               {profileDetails.map((person) => {
@@ -97,6 +98,7 @@ export const Profile = () => {
             {profileDetails.map((person) => {
               return (
                 <div className="profileContainer2" key={person._id}>
+                  <div>Email:</div>
                   <InputText
                     type={"email"}
                     className={"basicInput"}
@@ -104,6 +106,7 @@ export const Profile = () => {
                     name={"email"}
                     handler={inputHandler}
                   />
+                  <div>Phone number:</div>
                   <InputText
                     type={"phone"}
                     className={"basicInput"}
@@ -111,6 +114,7 @@ export const Profile = () => {
                     defaultValue={person.phone}
                     handler={inputHandler}
                   />
+                  <div>Password:</div>
                   <InputText
                     type={"password"}
                     className={"basicInput"}
@@ -118,15 +122,20 @@ export const Profile = () => {
                     name={"password"}
                     handler={inputHandler}
                   />
+                  <div className="profileContainer3">
+                    <div className="profileButton" onClick={() => updateUser()}>
+                      Change
+                    </div>
+                    <div
+                      className="profileButton"
+                      onClick={() => dontChangeUser()}
+                    >
+                      Cancel
+                    </div>
+                  </div>
                 </div>
               );
             })}
-          </div>
-          <div className="profileButton" onClick={() => updateUser()}>
-          Change
-          </div>
-          <div className="profileButton" onClick={() => dontChangeUser()}>
-          Cancel
           </div>
         </div>
       )}
