@@ -23,7 +23,6 @@ export const Modals = (props) => {
     getTreatment('Orthodontics')
       .then((results) => {
         setDetails(results.data);
-        console.log(details)
       })
       .catch((error) => console.log(error));
   }, [details])

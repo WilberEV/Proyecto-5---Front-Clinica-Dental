@@ -34,6 +34,14 @@ export const Admin = () => {
 
   const [userID, setUserID] = useState({
     id: "",
+    name: "",
+    lastname: "",
+    dni: "",
+    email: "",
+    phone: "",
+    role: "",
+    createdAt: "",
+    updatedAt: "",
   });
 
   const [appID, setAppID] = useState({
@@ -83,6 +91,7 @@ export const Admin = () => {
 
   //Hadlers
   const userHandler = (e) => {
+    
     setUserID((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
@@ -239,7 +248,7 @@ export const Admin = () => {
 
               <div
                 className="adminRigthButtons"
-                onClick={() => updateAppHandler(appID)}
+                onClick={() => getUsers(userID.id)}
               >
                 Edit
               </div>

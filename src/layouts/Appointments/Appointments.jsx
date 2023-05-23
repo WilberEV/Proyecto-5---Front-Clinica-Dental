@@ -71,7 +71,8 @@ export const Appointments = () => {
 
   //Bring User's apppointments data
   const getAppointments = () => {
-    findAppointment("", "", appointmentsDetails.client)
+    dontCreateAppointment(),
+    findAppointment("", "", userRdxData.credentials.token)
       .then((results) => {
         lookForApp(), setAppointmentsDetails(results.data);
       })
