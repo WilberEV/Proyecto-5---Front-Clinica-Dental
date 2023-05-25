@@ -119,10 +119,10 @@ export const Appointments = () => {
     <div className="appointmentsBody">
       {newAppointment == false && searchApp == false && (
         <div className="appointmentsButtonContainer">
-          <div className="profileButton" onClick={() => getAppointments()}>
+          <div className="appointmentButton" onClick={() => getAppointments()}>
             My appointments
           </div>
-          <div className="profileButton" onClick={() => createAppointment()}>
+          <div className="appointmentButton" onClick={() => createAppointment()}>
             New Appointment
           </div>
         </div>
@@ -205,7 +205,7 @@ export const Appointments = () => {
         {newAppointment == false && searchApp == true && (
           <div className="appointmentsContainer2">
             {appointmentsDetails.doctor !== "" ? (
-              <div className="profileContainer2">
+              <div className="appointmentsContainer2">
                 {appointmentsDetails.length > 0 && (
                   <div>
                     {appointmentsDetails.map((appInfo) => {
