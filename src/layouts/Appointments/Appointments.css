@@ -165,7 +165,7 @@
 
 @media (min-width: 1200px) and (max-width: 1799px) {
     .appointmentsBody{
-        height: 75vh;
+        height: 79vh;
         width: 100vw;
     
         display: flex;

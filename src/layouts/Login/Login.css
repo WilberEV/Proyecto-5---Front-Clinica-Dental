@@ -1,75 +1,247 @@
-.loginBody{
-    height: 75vh;
-    width: 100vw;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-color: #E5E5E5;
-}
-
-.loginContainer{
-    height: 60vh;
-    width: 30vw;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-    background-color: #a6a6a6;
-    border-radius: 1em;
-}
-
-.loginContainer2{
-    height: 30vh;
-    width: 15vw;
-
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    flex-direction: column;
-
-}
-
-.loginButton {
-
-    width: 6em;
-    height: 3em;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-color: #4561c3;
-
-    border-radius: 0.5em;
-    transition: 0.3s;
-    color: white;
-    font-weight: bold;
-
-    cursor: pointer;
-}
-
-.loginButton:hover {
-
-    background-color: #4545c3;
-    transition: 0.3s;
-}
-
 @media (max-width: 549px) {
+    .loginBody{
+        height: 86vh;
+        width: 100vw;
     
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        background-color: #E5E5E5;
+    }
+    
+    .loginContainer{
+        height: 30vh;
+        width: 70vw;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    
+        background-color: #a6a6a6;
+        border-radius: 1em;
+    }
+    
+    .loginContainer2{
+        height: 40vh;
+        width: 50vw;
+    
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        flex-direction: column;
+    
+    }
+    
+    .loginButton {
+    
+        width: 6em;
+        height: 3em;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        background-color: #4561c3;
+    
+        border-radius: 0.5em;
+        transition: 0.3s;
+        color: white;
+        font-weight: bold;
+    
+        cursor: pointer;
+    }
+    
+    .loginButton:hover {
+    
+        background-color: #4545c3;
+        transition: 0.3s;
+    }
 }
 
 @media (min-width: 550px) and (max-width: 1199px) {
-  
+    .loginBody{
+        height: 86vh;
+        width: 100vw;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        background-color: #E5E5E5;
+    }
+    
+    .loginContainer{
+        height: 30vh;
+        width: 50vw;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    
+        background-color: #a6a6a6;
+        border-radius: 1em;
+    }
+    
+    .loginContainer2{
+        height: 40vh;
+        width: 30vw;
+    
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        flex-direction: column;
+    
+    }
+    
+    .loginButton {
+    
+        width: 6em;
+        height: 3em;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        background-color: #4561c3;
+    
+        border-radius: 0.5em;
+        transition: 0.3s;
+        color: white;
+        font-weight: bold;
+    
+        cursor: pointer;
+    }
+    
+    .loginButton:hover {
+    
+        background-color: #4545c3;
+        transition: 0.3s;
+    }
 }
 
 @media (min-width: 1200px) and (max-width: 1799px) {
-
+    .loginBody{
+        height: 79vh;
+        width: 100vw;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        background-color: #E5E5E5;
+    }
+    
+    .loginContainer{
+        height: 60vh;
+        width: 30vw;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    
+        background-color: #a6a6a6;
+        border-radius: 1em;
+    }
+    
+    .loginContainer2{
+        height: 30vh;
+        width: 15vw;
+    
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        flex-direction: column;
+    
+    }
+    
+    .loginButton {
+    
+        width: 6em;
+        height: 3em;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        background-color: #4561c3;
+    
+        border-radius: 0.5em;
+        transition: 0.3s;
+        color: white;
+        font-weight: bold;
+    
+        cursor: pointer;
+    }
+    
+    .loginButton:hover {
+    
+        background-color: #4545c3;
+        transition: 0.3s;
+    }
 }
 
 @media (min-width: 1800px) {
-  
+    .loginBody{
+        height: 86vh;
+        width: 100vw;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        background-color: #E5E5E5;
+    }
+    
+    .loginContainer{
+        height: 45vh;
+        width: 30vw;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    
+        background-color: #a6a6a6;
+        border-radius: 1em;
+    }
+    
+    .loginContainer2{
+        height: 30vh;
+        width: 15vw;
+    
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        flex-direction: column;
+    
+    }
+    
+    .loginButton {
+    
+        width: 6em;
+        height: 3em;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        background-color: #4561c3;
+    
+        border-radius: 0.5em;
+        transition: 0.3s;
+        color: white;
+        font-weight: bold;
+    
+        cursor: pointer;
+    }
+    
+    .loginButton:hover {
+    
+        background-color: #4545c3;
+        transition: 0.3s;
+    }
 }
