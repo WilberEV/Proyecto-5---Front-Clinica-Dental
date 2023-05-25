@@ -1,4 +1,49 @@
-.treatmentsBody{
+@media (max-width: 414px) {
+  .treatmentsBody {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+
+    background-color: #e5e5e5;
+  }
+
+  .treatmentsGrid {
+
+    width: 85vw;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .treatmentsCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 35vh;
+
+    color: white;
+
+    background-color: #5e7ce4;
+    transition: 0.4s;
+    border-radius: 1em;
+
+    margin: 0.5em;
+  }
+
+  .treatmentsCard img {
+    width: 75vw;
+  }
+}
+
+/* Styles for tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* CSS rules for tablets go here */
+}
+
+/* Styles for desktops and laptops */
+@media (min-width: 1366px) and (max-width: 1800px) {
+  .treatmentsBody {
     height: 100vh;
     width: 100vw;
 
@@ -6,18 +51,17 @@
     justify-content: center;
     align-items: center;
 
-    background-color: #E5E5E5;
-}
+    background-color: #e5e5e5;
+  }
 
-
-.treatmentsGrid{
+  .treatmentsGrid {
     height: 80vh;
     width: 85vw;
     display: grid;
     grid-template-columns: 33% 33% 33%;
-}
+  }
 
-.treatmentsCard{
+  .treatmentsCard {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,8 +75,13 @@
     border-radius: 1em;
 
     margin: 0.5em;
+  }
+
+  .treatmentsCard img {
+    width: 15vw;
+  }
 }
 
-.treatmentsCard img{
-    width: 15vw;
+@media (min-width: 1900px) {
+  /* Styles for desktops and laptops */
 }

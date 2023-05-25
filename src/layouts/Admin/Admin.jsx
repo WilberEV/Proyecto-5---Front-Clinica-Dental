@@ -3,7 +3,12 @@ import "./Admin.css";
 import { useSelector } from "react-redux";
 import { userData } from "../userSlice";
 import { useNavigate } from "react-router-dom";
-import { bringUserProfile, findAppointment, updateAppointment,} from "../../services/apiCalls";
+import {
+  bringUserProfile,
+  findAppointment,
+  updateAppointment,
+  updateUserProfile,
+} from "../../services/apiCalls";
 import jwt_decode from "jwt-decode";
 import { InputText } from "../../components/InputText/InputText";
 
@@ -11,7 +16,7 @@ export const Admin = () => {
   const navigate = useNavigate();
 
   const [searchApp, setSearchApp] = useState(false);
-  const [editApp, setEditApp] = useState(false);
+  const [editData, seteditData] = useState(false);
 
   const [profileDetails, setProfileDetails] = useState({
     _id: "",
@@ -33,7 +38,7 @@ export const Admin = () => {
   });
 
   const [userID, setUserID] = useState({
-    id: "",
+    _id: "",
     name: "",
     lastname: "",
     dni: "",
@@ -67,8 +72,13 @@ export const Admin = () => {
     bringUserProfile(role, userRdxData.credentials.token)
       .then((results) => {
         dontLookForApp();
-        dontFindForApp();
+        if(results.data.length > 1){
+        dontModifyData();
         setProfileDetails(results.data);
+        } else {
+          console.log(results.data, '/////////results.data//////////')
+          setProfileDetails(results.data)
+        }
       })
       .catch((error) => console.log(error));
   };
@@ -84,22 +94,38 @@ export const Admin = () => {
   const editAppointments = () => {
     updateAppointment(appID, userRdxData.credentials.token)
       .then((results) => {
-        dontLookForApp(), setAppointmentsDetails(results.data);
+        dontModifyData(), 
+        dontModifyData(),
+        setAppointmentsDetails(results.data);
       })
+      .catch((error) => console.log(error.response.data));
+  };
+
+  const updateUser = () => {
+    updateUserProfile(
+      userID._id,
+      userID,
+      userRdxData.credentials.token
+    )
+      .then(() => {
+        dontModifyData()
+        getUsers(userID._id)
+      }
+      )
       .catch((error) => console.log(error));
   };
 
   //Hadlers
   const userHandler = (e) => {
-    
     setUserID((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
+    console.log(userID, '//////////////AAAAAAAAAAAAAAAAAAAAAA///////////////////')
   };
 
   const updateAppHandler = (e) => {
-    findApp();
+    modifyData();
     setAppID((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
@@ -121,8 +147,8 @@ export const Admin = () => {
 
   const lookForApp = () => setSearchApp(true);
   const dontLookForApp = () => setSearchApp(false);
-  const findApp = () => setEditApp(true);
-  const dontFindForApp = () => setEditApp(false);
+  const modifyData = () => seteditData(true);
+  const dontModifyData = () => seteditData(false);
 
   return (
     <div className="adminBody">
@@ -142,9 +168,10 @@ export const Admin = () => {
           </div>
         </div>
         <div className="adminInfo">
+{/* ///////Show User's Data////// */}
           {profileDetails.length > 0 &&
             searchApp === false &&
-            editApp === false && (
+            editData === false && (
               <div>
                 {profileDetails.map((person) => {
                   return (
@@ -163,12 +190,91 @@ export const Admin = () => {
                     </div>
                   );
                 })}
+
+                <div className="adminRigthButtons" onClick={() => modifyData()}>
+                  Edit
+                </div>
               </div>
             )}
-
+{/* ///////Edit User's Data////// */}
+          {profileDetails.length > 0 &&
+            searchApp === false &&
+            editData === true && (
+              <div>
+                {profileDetails.map((person) => {
+                  return (
+                    <div className="userInformation" key={person._id}>
+                      <div>Name:</div>
+                      <InputText
+                        type={"name"}
+                        className={"basicInput"}
+                        defaultValue={person.name}
+                        name={"name"}
+                        handler={userHandler}
+                      />
+                      <div>Lastname:</div>
+                      <InputText
+                        type={"lastname"}
+                        className={"basicInput"}
+                        defaultValue={person.lastname}
+                        name={"lastname"}
+                        handler={userHandler}
+                      />
+                      <div>Email:</div>
+                      <InputText
+                        type={"email"}
+                        className={"basicInput"}
+                        defaultValue={person.email}
+                        name={"email"}
+                        handler={userHandler}
+                      />
+                      <div>Phone number:</div>
+                      <InputText
+                        type={"phone"}
+                        className={"basicInput"}
+                        name={"phone"}
+                        defaultValue={person.phone}
+                        handler={userHandler}
+                      />
+                      <div>Role:</div>
+                      <InputText
+                        type={"role"}
+                        className={"basicInput"}
+                        defaultValue={person.role}
+                        name={"role"}
+                        handler={userHandler}
+                      />
+                      <div>Password:</div>
+                      <InputText
+                        type={"password"}
+                        className={"basicInput"}
+                        placeholder={"Password"}
+                        name={"password"}
+                        handler={userHandler}
+                      />
+                      <div className="profileContainer3">
+                        <div
+                          className="profileButton"
+                          onClick={() => updateUser()}
+                        >
+                          Confirm
+                        </div>
+                        <div
+                          className="profileButton"
+                          onClick={() => dontChangeUser()}
+                        >
+                          Cancel
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+{/* ///////Show Appointment's Data////// */}
           {appointmentsDetails.length > 0 &&
             searchApp === true &&
-            editApp === false && (
+            editData === false && (
               <div>
                 {appointmentsDetails.map((appInfo) => {
                   return (
@@ -185,10 +291,10 @@ export const Admin = () => {
                 })}
               </div>
             )}
-
+{/* ///////Edit Appointment's Data////// */}
           {appointmentsDetails.length > 0 &&
             searchApp === true &&
-            editApp === true && (
+            editData === true && (
               <div>
                 <div className="appInformation">
                   <InputText
@@ -216,41 +322,23 @@ export const Admin = () => {
                 </div>
               </div>
             )}
-
-          {appointmentsDetails.length > 0 &&
-            searchApp === false &&
-            editApp === true && (
-              <div className="userInformation">
-                <div>Client: {appointmentsDetails.client}</div>
-                <div>Doctor: {appointmentsDetails.doctor}</div>
-                <div>Start: {appointmentsDetails.start}</div>
-                <div>End: {appointmentsDetails.end}</div>
-              </div>
-            )}
         </div>
 
         {searchApp === false && (
           <div className="adminRigthContainer">
             <InputText
-              type={"id"}
+              type={"_id"}
               className={"basicInput"}
               placeholder={"User's ID"}
-              name={"id"}
+              name={"_id"}
               handler={userHandler}
             />
             <div className="adminRigthButtonsContainer">
               <div
                 className="adminRigthButtons"
-                onClick={() => getUsers(userID.id)}
+                onClick={() => getUsers(userID._id)}
               >
                 Find
-              </div>
-
-              <div
-                className="adminRigthButtons"
-                onClick={() => getUsers(userID.id)}
-              >
-                Edit
               </div>
             </div>
           </div>

@@ -1,6 +1,7 @@
+@media (max-width: 414px) {
+    
 .headerBody{
-    height: 15vh;
-    width: 100vw;
+    height: 8vh;
 
     display: flex;
     align-items: center;
@@ -10,7 +11,7 @@
 }
 
 .headerLogo{
-    height: 15vh;
+    height: 8vh;
     width: 20vw;
     
     display: flex;
@@ -20,12 +21,12 @@
 }
 
 .headerLogo img{
-    height: 8vh;
+    height: 6vh;
     cursor: pointer;
 }
 
 .headerOptions{
-    height: 15vh;
+    height: 8vh;
     width: 80vw;
     
     display: flex;
@@ -58,4 +59,76 @@
 
     background-color: black;
     color: white;
+}
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* CSS rules for tablets go here */
+}
+
+@media (min-width: 1366px) and (max-width: 1800px) {
+  .headerBody {
+    height: 15vh;
+    width: 100vw;
+
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+    background-color: #5e7ce4;
+  }
+
+  .headerLogo {
+    height: 15vh;
+    width: 20vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .headerLogo img {
+    height: 8vh;
+    cursor: pointer;
+  }
+
+  .headerOptions {
+    height: 15vh;
+    width: 80vw;
+
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .headerButton {
+    height: 8vh;
+    width: 10vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    color: white;
+
+    border-radius: 1em;
+  }
+
+  .headerButton:hover {
+    background-color: #4561c3;
+  }
+
+  .adminButton {
+    width: 100vw;
+
+    background-color: black;
+    color: white;
+  }
+}
+
+@media (min-width: 1900px) {
+  /* Styles for desktops and laptops */
 }

@@ -55,13 +55,19 @@ export const Profile = () => {
   };
 
   const updateUser = () => {
+    console.log("HEREEE")
     updateUserProfile(
       userRdxData.credentials.user.id,
       newData,
       userRdxData.credentials.token
     )
-      .then(() => dontChangeUser())
-      .catch((error) => console.group(error));
+      .then(() => 
+      {    console.log(".THEN")
+
+        dontChangeUser()})
+      .catch((error) => {
+        console.log(".CATcH is >>>>")
+        console.log("THIS UPDATEUSER", error.response.data)});
   };
 
   const changeUser = () => setEditUser(true);
@@ -124,7 +130,7 @@ export const Profile = () => {
                   />
                   <div className="profileContainer3">
                     <div className="profileButton" onClick={() => updateUser()}>
-                      Change
+                      Confirm
                     </div>
                     <div
                       className="profileButton"

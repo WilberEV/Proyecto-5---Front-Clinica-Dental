@@ -35,16 +35,28 @@ export const updateUserProfile = async (id, data, token) => {
       'Authorization': 'Bearer '+ token,
     },
   };
+
   let body = {};
+    if (data.name !== "") {
+      body.name = data.name;
+    }
+    if (data.lastname !== "") {
+      body.lastname = data.lastname;
+    }
     if (data.email !== "") {
       body.email = data.email;
     }
     if (data.phone !== "") {
       body.phone = data.phone;
     }
+    if (data.role !== "") {
+      body.role = data.role;
+    }
     if (data.password !== "") {
       body.password = data.password;
     }
+
+    console.log(id, body, config, 'SIDE CHESTO')
 
   return await axios.put(`https://proyecto-4-clinica-dental-production.up.railway.app/user/${id}`, body, config);
 }

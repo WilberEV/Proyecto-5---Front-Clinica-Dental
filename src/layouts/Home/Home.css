@@ -1,6 +1,92 @@
 /* Styles for mobile devices */
 @media (max-width: 414px) {
-  /* CSS rules for mobile devices go here */
+  .homeBody {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background-color: #e5e5e5;
+  }
+
+  .homeTitle {
+    height: 12vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid #5e7ce4;
+    border-radius: 20%;
+  }
+
+  .homeTitle img {
+    height: 6vh;
+  }
+
+  .homeSubtitle {
+    height: 7vh;
+    width: 40vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    border-bottom: 2px solid #5e7ce4;
+    border-radius: 75%;
+  }
+
+  .homeSubtitle img {
+    height: 3.5vh;
+  }
+
+  .homeSplit {
+    height: 20vh;
+    width: 100vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .homeSplit img {
+    width: 100vw;
+  }
+
+  .homeBlock1 {
+    height: 50vh;
+    width: 100vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .homeBlock1 img {
+    height: 25vh;
+  }
+
+  .verticalSplit {
+    height: 0.2vh;
+    width: 70vw;
+
+    background-color: #5e7ce4;
+
+    border-radius: 75%;
+  }
+
+  .homeBlock1 p {
+    height: 20vh;
+    width: 100vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1em;
+  }
 }
 
 /* Styles for tablets */
@@ -9,9 +95,8 @@
 }
 
 /* Styles for desktops and laptops */
-@media (min-width: 1366px) {
+@media (min-width: 1366px) and (max-width: 1800px) {
   .homeBody {
-    height: 215vh;
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -98,4 +183,8 @@
 
     font-size: 1.2em;
   }
+}
+
+@media (min-width: 1900px) {
+  /* Styles for desktops and laptops */
 }
