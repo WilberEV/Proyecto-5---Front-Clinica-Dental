@@ -1,9 +1,11 @@
 @media (max-width: 414px) {
   .treatmentsBody {
+    height: 100%;
     width: 100vw;
+
     display: flex;
     justify-content: center;
-    align-items: start;
+    align-items: center;
 
     background-color: #e5e5e5;
   }
@@ -11,8 +13,8 @@
   .treatmentsGrid {
 
     width: 85vw;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 100%;
   }
 
   .treatmentsCard {
@@ -20,7 +22,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 35vh;
+    height: 30vh;
 
     color: white;
 
@@ -32,13 +34,49 @@
   }
 
   .treatmentsCard img {
-    width: 75vw;
+    width: 50vw;
   }
 }
 
 /* Styles for tablets */
 @media (min-width: 768px) and (max-width: 1024px) {
-  /* CSS rules for tablets go here */
+  .treatmentsBody {
+    height: 85vh;
+    width: 100vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #e5e5e5;
+  }
+
+  .treatmentsGrid {
+    height: 70vh;
+    width: 85vw;
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+
+  .treatmentsCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 17vh;
+
+    color: white;
+
+    background-color: #5e7ce4;
+    transition: 0.4s;
+    border-radius: 1em;
+
+    margin: 0.5em;
+  }
+
+  .treatmentsCard img {
+    width: 18vw;
+  }
 }
 
 /* Styles for desktops and laptops */
@@ -83,5 +121,41 @@
 }
 
 @media (min-width: 1900px) {
-  /* Styles for desktops and laptops */
+  .treatmentsBody {
+    height: 90vh;
+    width: 100vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #e5e5e5;
+  }
+
+  .treatmentsGrid {
+    height: 80vh;
+    width: 70vw;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+  }
+
+  .treatmentsCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 35vh;
+
+    color: white;
+
+    background-color: #5e7ce4;
+    transition: 0.4s;
+    border-radius: 1em;
+
+    margin: 0.5em;
+  }
+
+  .treatmentsCard img {
+    width: 18vw;
+  }
 }

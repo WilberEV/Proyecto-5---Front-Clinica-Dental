@@ -1,5 +1,5 @@
 /* Styles for mobile devices */
-@media (max-width: 414px) {
+@media (max-width: 549px) {
   .homeBody {
     width: 100vw;
     display: flex;
@@ -55,7 +55,7 @@
   }
 
   .homeBlock1 {
-    height: 50vh;
+    height: 60vh;
     width: 100vw;
 
     display: flex;
@@ -90,12 +90,100 @@
 }
 
 /* Styles for tablets */
-@media (min-width: 768px) and (max-width: 1024px) {
-  /* CSS rules for tablets go here */
+@media (min-width: 550px) and (max-width: 1199px) {
+  
+  .homeBody {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background-color: #e5e5e5;
+  }
+
+  .homeTitle {
+    height: 20vh;
+    width: 55vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid #5e7ce4;
+    border-radius: 20%;
+  }
+
+  .homeTitle img {
+    height: 10vh;
+  }
+
+  .homeSubtitle {
+    height: 12vh;
+    width: 35vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    border-bottom: 2px solid #5e7ce4;
+    border-radius: 75%;
+  }
+
+  .homeSubtitle img {
+    height: 5vh;
+  }
+
+  .homeSplit {
+    height: 25vh;
+    width: 100vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .homeSplit img {
+    width: 100vw;
+  }
+
+  .homeBlock1 {
+    height: 65vh;
+    width: 90vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .homeBlock1 img {
+    height: 33vh;
+  }
+
+  .verticalSplit {
+    height: 0.2vh;
+    width: 60vw;
+
+    background-color: #5e7ce4;
+
+    border-radius: 75%;
+  }
+
+  .homeBlock1 p {
+    height: 5vh;
+    width: 80vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.2em;
+  }
+
 }
 
 /* Styles for desktops and laptops */
-@media (min-width: 1366px) and (max-width: 1800px) {
+@media (min-width: 1200px) and (max-width: 1799px) {
   .homeBody {
     width: 100vw;
     display: flex;
@@ -185,6 +273,92 @@
   }
 }
 
-@media (min-width: 1900px) {
-  /* Styles for desktops and laptops */
+@media (min-width: 1800px) {
+  .homeBody {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background-color: #e5e5e5;
+  }
+
+  .homeTitle {
+    height: 20vh;
+    width: 40vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid #5e7ce4;
+    border-radius: 20%;
+  }
+
+  .homeTitle img {
+    height: 10vh;
+  }
+
+  .homeSubtitle {
+    height: 15vh;
+    width: 30vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    border-bottom: 2px solid #5e7ce4;
+    border-radius: 75%;
+  }
+
+  .homeSubtitle img {
+    height: 6vh;
+  }
+
+  .homeSplit {
+    height: 50vh;
+    width: 100vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .homeSplit img {
+    width: 100vw;
+  }
+
+  .homeBlock1 {
+    height: 70vh;
+    width: 85vw;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .homeBlock1 img {
+    height: 60vh;
+  }
+
+  .verticalSplit {
+    height: 60vh;
+    width: 0.2vw;
+
+    background-color: #5e7ce4;
+
+    border-radius: 75%;
+  }
+
+  .homeBlock1 p {
+    height: 50vh;
+    width: 17vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.2em;
+  }
 }

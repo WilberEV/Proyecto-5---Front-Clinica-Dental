@@ -69,3 +69,19 @@
     background-color: #4545c3;
     transition: 0.3s;
 }
+
+@media (max-width: 549px) {
+    
+}
+
+@media (min-width: 550px) and (max-width: 1199px) {
+  
+}
+
+@media (min-width: 1200px) and (max-width: 1799px) {
+
+}
+
+@media (min-width: 1800px) {
+  
+}
