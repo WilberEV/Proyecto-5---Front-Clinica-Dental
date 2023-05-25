@@ -1,6 +1,6 @@
 @media (max-width: 549px) {
     .appointmentsBody{
-        height: 84vh;
+        height: 86vh;
         width: 100vw;
     
         display: flex;
@@ -83,7 +83,7 @@
 
 @media (min-width: 550px) and (max-width: 1199px) {
     .appointmentsBody{
-        height: 84vh;
+        height: 86vh;
         width: 100vw;
     
         display: flex;
@@ -243,7 +243,7 @@
 
 @media (min-width: 1800px) {
     .appointmentsBody{
-        height: 84vh;
+        height: 86vh;
         width: 100vw;
     
         display: flex;
