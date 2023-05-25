@@ -254,13 +254,13 @@ export const Admin = () => {
                       />
                       <div className="profileContainer3">
                         <div
-                          className="profileButton"
+                          className="adminRigthButtons"
                           onClick={() => updateUser()}
                         >
                           Confirm
                         </div>
                         <div
-                          className="profileButton"
+                          className="adminRigthButtons"
                           onClick={() => dontChangeUser()}
                         >
                           Cancel

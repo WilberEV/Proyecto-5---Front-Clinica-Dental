@@ -59,6 +59,8 @@
 
     background-color: black;
     color: white;
+
+    cursor: pointer;
 }
 }
 
@@ -122,6 +124,8 @@
 
     background-color: black;
     color: white;
+
+    cursor: pointer;
   }
 }
 
@@ -185,6 +189,8 @@
 
     background-color: black;
     color: white;
+
+    cursor: pointer;
   }
 }
 
@@ -248,5 +254,7 @@
 
     background-color: black;
     color: white;
+
+    cursor: pointer;
   }
 }
