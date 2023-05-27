@@ -40,3 +40,8 @@
 .read-the-docs {
   color: #888;
 }
+
+.navbar{
+  width: 100vw !important;
+  background-color: #5e7ce4 !important
+}

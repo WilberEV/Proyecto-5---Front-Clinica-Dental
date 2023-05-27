@@ -1,18 +1,8 @@
 @media (max-width: 549px) {
-    
-.headerBody{
-    height: 8vh;
-
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-
-    background-color: #5e7ce4;
-}
 
 .headerLogo{
     height: 8vh;
-    width: 20vw;
+    width: 60vw;
     
     display: flex;
     justify-content: center;
@@ -25,19 +15,9 @@
     cursor: pointer;
 }
 
-.headerOptions{
-    height: 8vh;
-    width: 80vw;
-    
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    flex-direction: row;
-}
-
 .headerButton{
     height: 8vh;
-    width: 10vw;
+    width: 30vw;
 
     display: flex;
     justify-content: center;
