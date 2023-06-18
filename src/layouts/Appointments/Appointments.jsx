@@ -213,8 +213,8 @@ export const Appointments = () => {
                         <div className="appInformation" key={appInfo._id}>
                           <div className="userSplit"></div>
                           <div>ID: {appInfo._id}</div>
-                          <div>Client: {appInfo.client}</div>
-                          <div>Doctor: {appInfo.doctor}</div>
+                          <div>Client: {appInfo.client.name}</div>
+                          <div>Doctor: {appInfo.doctor.name}</div>
                           <div>Start: {appInfo.start}</div>
                           <div>End: {appInfo.end}</div>
                           <div className="userSplit"></div>
